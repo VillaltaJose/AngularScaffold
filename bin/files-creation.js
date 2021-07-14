@@ -13,6 +13,7 @@ const run = (nombre, dir) => {
 		fs.mkdirSync(`${dir}/${nombre}`);
 	}
 	
+	status.stop()
 	angularCli(dir, nombre)
 	
 }
