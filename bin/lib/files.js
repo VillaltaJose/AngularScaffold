@@ -1,6 +1,8 @@
-const chalk = require('chalk');
 const fs = require('fs');
+const fse = require('fs-extra');
 const path = require('path');
+const { okMessage } = require('./messages');
+const appRoot = require('app-root-path');
 
 const readFile = (dir) => {
 	return new Promise((resolve, reject) => {
@@ -36,6 +38,29 @@ const insertText = async (dir, start, delCount, newSubStr) => {
 	})
 }
 
+const createFolders = (mainDir, folders, status, message) => {
+	for(let i = 0; i<folders.length; i++) {
+        status.start('Creando directorios...')
+
+        if(!fs.existsSync(`${mainDir}/${folders[i]}`))
+            fs.mkdirSync(`${mainDir}/${folders[i]}`)
+            
+        status.stop()
+        okMessage(message.replace('FOLDER_NAME', folders[i]))
+    }
+}
+
+const copy = async (from, to) => {
+	return new Promise((resolve, reject) => {
+		try {
+			fse.copySync(`${appRoot}/${from}`, to, {recursive: true})
+			resolve()
+		} catch(error) {
+			reject(error)
+		}
+	})
+}
+
 module.exports = {
 	getCurrentDirectoryBase: () => {
 		return path.basename(process.cwd());
@@ -47,4 +72,6 @@ module.exports = {
 
 	readFile,
 	insertText,
+	createFolders,
+	copy,
 };

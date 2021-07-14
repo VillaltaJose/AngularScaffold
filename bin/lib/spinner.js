@@ -12,13 +12,13 @@ const start = (message) => {
 const stop = () => status.stop()
 
 const stopOkMessage = (message) => {
-    okMessage(message);
     stop()
+    okMessage(message);
 }
 
 const stopErrMessage = (message) => {
-    errMessage(message);
     stop()
+    errMessage(message);
 }
 
 module.exports = {

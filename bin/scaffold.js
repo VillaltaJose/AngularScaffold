@@ -54,7 +54,7 @@ const scaffold = async () => {
 		if(answer.directorio == files.getCurrentDirectoryBase()) {
 			answer.directorio = ".";
 		}
-		fileCreation.run(answer.nombreProyecto.toLowerCase(), answer.directorio);
+		fileCreation.run(answer.nombreProyecto, answer.directorio);
 	} else {
 		console.log(`${chalk.bold(chalk.yellow('[ERROR]:'))} ${chalk.red('Necesitas instalar angular 11 o superior para continuar')}`)
 		return;
