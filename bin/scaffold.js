@@ -30,6 +30,12 @@ const scaffold = async () => {
 
 	const questions = [
 		{
+			name: 'version',
+			type: 'input',
+			message: `¿Posees instaladas la versiones de ${chalk.yellow('Angular 11 o superior')}?`,
+			choices: ['Si', 'No'],
+			default: 'Si'
+		},{
 			name: 'nombreProyecto',
 			type: 'input',
 			message: 'Nombre del proyecto:',
@@ -44,10 +50,15 @@ const scaffold = async () => {
 
 	let answer = await inquirer.prompt(questions)
 
-	if(answer.directorio == files.getCurrentDirectoryBase()) {
-		answer.directorio = ".";
+	if(answer.version.toLowerCase() == 'si') {
+		if(answer.directorio == files.getCurrentDirectoryBase()) {
+			answer.directorio = ".";
+		}
+		fileCreation.run(answer.nombreProyecto, answer.directorio);
+	} else {
+		console.log(`${chalk.bold(chalk.yellow('[ERROR]:'))} ${chalk.red('Necesitas instalar angular 11 o superior para continuar')}`)
+		return;
 	}
-	fileCreation.run(answer.nombreProyecto, answer.directorio);
 
 }
 
