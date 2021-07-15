@@ -39,6 +39,19 @@ const crearDirectorios = async (dir, nombre) => {
         status.start('Agregando servicio de Drawers...')
         await fileHelper.copy('bin/assets/drawer', `${dir}/${nombre}/src/app/shared/services/drawer`)
         status.stopOkMessage(`Servicio ${chalk.yellow('DrawerService')} agregado`)
+        
+        status.start('Agregando app module...')
+        fs.writeFileSync(`${dir}/${nombre}/src/app/app.module.ts`, files.app.appmodule)
+        status.stopOkMessage(`Archivo ${chalk.yellow('app.module.ts')} agregado`)
+        status.start('Agregando app html...')
+        fs.writeFileSync(`${dir}/${nombre}/src/app/app.component.html`, files.app.html)
+        status.stopOkMessage(`Archivo ${chalk.yellow('app.component.html')} agregado`)
+        status.start('Agregando app routing...')
+        fs.writeFileSync(`${dir}/${nombre}/src/app/app-routing.module.ts`, files.app.route)
+        status.stopOkMessage(`Archivo ${chalk.yellow('app-routing.module.ts')} agregado`)
+
+        console.log('')
+        okMessage(chalk.green(`Proyecto ${nombre} generado correctamente`))
 
     } catch(error) {
         status.stopErrMessage(error)

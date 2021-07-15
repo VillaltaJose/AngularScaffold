@@ -3,6 +3,7 @@ const package_json = require('./package-json');
 const tsconfig_json = require('./tsconfig-json');
 const angular_json = require('./angular-json');
 const styles = require('./styles');
+const app = require('./app')
 
 module.exports = {
     editorConfig,
@@ -10,4 +11,5 @@ module.exports = {
     tsconfig_json,
     angular_json,
     styles,
+    app,
 }
