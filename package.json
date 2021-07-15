@@ -4,7 +4,7 @@
 	"description": "Scaffold cli generator with clean arquitechture for Dot Net Core 5",
 	"main": "bin/index.js",
 	"bin": {
-		"vss-angular": "bin/index.js"
+		"vs-angular": "bin/index.js"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
